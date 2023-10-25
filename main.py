@@ -1,4 +1,4 @@
-import datetime
+
 
 
 
@@ -22,23 +22,28 @@ def mensual():
 def buscarCliente():
     pass
 def cargarDatos(columnas, filas):
+    archivoDatos = 'Datos.txt'
 
+    
     matriz = [[0]* columnas for i in range(filas)]
     matriz[0][0] = 'Mes'
-    matriz[0][1] = 'IVA Compras'
-    matriz[0][2] = 'IVA Ventas'
-    matriz[0][3] = 'Diferencia'
+    matriz[0][1] = 'Año'
+    matriz[0][2] = 'IVA Compras'
+    matriz[0][3] = 'IVA Ventas'
+    matriz[0][4] = 'Diferencia'
 
-    for c in range (1,columnas):
-        matriz[c][0] = str(input('Mes: '))
-        matriz[c][1] = int(input('IVA Compras: '))
-        matriz[c][2] = int(input('IVA Ventas: '))
-        matriz[c][3] = (matriz[c][1] - matriz[c][2])
+    with open(archivoDatos,'a') as archivo:
+        for c in range (1,columnas):
+            matriz[c][0] = 'Marzo'#str(input('Mes: '))
+            matriz[c][1] = '2023'
+            matriz[c][2] = int(input(f'IVA Compras de {matriz[c][0]}: '))
+            matriz[c][3] = int(input(f'IVA Ventas de {matriz[c][0]}: '))
+            matriz[c][4] = (matriz[c][2] - matriz[c][3])
 
-        
+            #Esto escribe los datos en el txt
 
-
-
+            linea = ','.join(map(str, matriz[c]))
+            archivo.write(linea + '\n')
 
     
     def imprimirmatriz(matriz):
@@ -48,39 +53,22 @@ def cargarDatos(columnas, filas):
             print()
     imprimirmatriz(matriz)
 
-# Estructura de datos básica para representar clientes y transacciones
-clientes = {
-    "cliente1": {"transacciones": [(datetime.date(2023, 1, 5), 1000.0), (datetime.date(2023, 1, 15), 500.0)]},
-    "cliente2": {"transacciones": [(datetime.date(2023, 1, 3), 1500.0), (datetime.date(2023, 1, 20), 800.0)]},
-    # Agrega más clientes según sea necesario
-}
 
-# Función para calcular el IVA mensual y proyección anual para un cliente
-def calcular_iva(cliente):
-    iva_mensual = 0.0
-    for fecha, monto in cliente["transacciones"]:
-        # Asume una tasa de IVA del 10% (puedes ajustarla según las regulaciones locales)
-        if fecha.month == datetime.date.today().month:
-            iva_mensual += monto * 0.1
-
-    iva_anual = sum(monto * 0.1 for _, monto in cliente["transacciones"])
-
-    return iva_mensual, iva_anual
 
 # Función para mostrar resultados
-def mostrar_resultados(cliente, iva_mensual, iva_anual):
-    print(f"Cliente: {cliente}")
-    print(f"IVA Mensual: {iva_mensual}")
-    print(f"Proyección Anual de IVA: {iva_anual}")
-    print("\n")
+# def mostrar_resultados(cliente, iva_mensual, iva_anual):
+#     print(f"Cliente: {cliente}")
+#     print(f"IVA Mensual: {iva_mensual}")
+#     print(f"Proyección Anual de IVA: {iva_anual}")
+#     print("\n")
 
-# Calcular y mostrar resultados para cada cliente
-for cliente, detalles in clientes.items():
-    iva_mensual, iva_anual = calcular_iva(detalles)
-    mostrar_resultados(cliente, iva_mensual, iva_anual)
+# # Calcular y mostrar resultados para cada cliente
+# for cliente, detalles in clientes.items():
+#     iva_mensual, iva_anual = calcular_iva(detalles)
+#     mostrar_resultados(cliente, iva_mensual, iva_anual)
 
-columnas = 4
-filas = 4
+columnas = 5
+filas = 5
 matrizAnual = [[0]*columnas for i in range(filas)]
 
 
