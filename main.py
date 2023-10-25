@@ -4,7 +4,7 @@
 
 
 def opciones():
-    opcion = int(input("\n1.Ver proyeccion anual de IVA\n2.Ver proyeccion mensual de IVA\n3.Cargar datos\n4.Buscar cliente\n¿Que accion quiere visualizar?: "))
+    opcion = int(input("\n1.Ver proyeccion anual de IVA\n2.Ver proyeccion mensual de IVA\n3.Cargar datos\n4.Buscar periodo\n¿Que accion quiere visualizar?: "))
     if opcion == 1:
         anual()
     elif opcion == 2:
@@ -12,14 +12,32 @@ def opciones():
     elif opcion == 3:
         cargarDatos(columnas, filas)
     else:
-        buscarCliente()
+        mes = str(input('Ingrese un mes: '))
+        anio = str(input('Ingrese un año: '))
+        buscarPeriodo(mes,anio)
 
 def anual():
     print(matrizAnual)
 
 def mensual():
     pass
-def buscarCliente():
+def buscarPeriodo(mes, anio):
+    with open('Datos.txt', 'r') as archivo:
+        # Iterar sobre las líneas del archivo
+        for linea in archivo:
+            # Dividir la línea en elementos utilizando la coma como delimitador
+            elementos = linea.strip().split(',')
+            
+            # Verificar si el mes y año coinciden con los parámetros
+            if elementos[0] == mes and elementos[1] == str(anio):
+                # Imprimir la línea encontrada y salir del bucle
+                print('Mes - Año - IVA Compra - IVA Venta - Diferencia')
+                for i in range (len(elementos)):
+                    print(elementos[i], end = "         ")
+                break
+        else:
+            # Este bloque se ejecuta si el bucle no se rompe, es decir, si no se encontró la línea
+            print(f"No se encontró ninguna línea para el mes {mes} del {anio}")
     pass
 def cargarDatos(columnas, filas):
     archivoDatos = 'Datos.txt'
@@ -34,7 +52,7 @@ def cargarDatos(columnas, filas):
 
     with open(archivoDatos,'a') as archivo:
         for c in range (1,columnas):
-            matriz[c][0] = 'Marzo'#str(input('Mes: '))
+            matriz[c][0] = str(input('Mes: '))
             matriz[c][1] = '2023'
             matriz[c][2] = int(input(f'IVA Compras de {matriz[c][0]}: '))
             matriz[c][3] = int(input(f'IVA Ventas de {matriz[c][0]}: '))
