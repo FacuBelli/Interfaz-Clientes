@@ -1,11 +1,11 @@
 def opciones():
     try:
     
-        opcion = int(input("\n1.Cargar compras\n2.Cargar ventas\n3.Generar reporte\n4.Buscar periodo Compras\n5.Buscar periodo Ventas\n6.IVA a pagar Total\n7.Consultar total de un periodo\n¿Que accion quiere visualizar?: "))
+        opcion = int(input("\n1.Cargar compras\n2.Cargar ventas\n3.Generar reporte\n4.Buscar periodo Compras\n5.Buscar periodo Ventas\n6.IVA a pagar Total\n7.Consultar total de un periodo\n8.Cancelar\n¿Que accion quiere visualizar?: "))
         
         #Validacion
-        while opcion <= 0 or opcion > 7:
-            opcion = int(input("Opcion no correcta. Estas son las opciones posibles:\n1.Cargar compras\n2.Cargar ventas\n3.Generar reporte\n4.Buscar periodo Compras\n5.Buscar periodo Ventas\n6.IVA a pagar Total\n7.Consultar total de un periodo\n¿Que accion quiere visualizar?: "))
+        while opcion <= 0 or opcion > 8:
+            opcion = int(input("Opcion no correcta. Estas son las opciones posibles:\n1.Cargar compras\n2.Cargar ventas\n3.Generar reporte\n4.Buscar periodo Compras\n5.Buscar periodo Ventas\n6.IVA a pagar Total\n7.Consultar total de un periodo\n8.Cancelar\n¿Que accion quiere visualizar?: "))
         
         #Opciones
         if opcion == 1:
@@ -35,9 +35,6 @@ def opciones():
         opciones()
 
 
-
-def anual():
-    print(matrizAnual)
 
 #Cargar compras
 def cargarCompras(matriz,columnas):
