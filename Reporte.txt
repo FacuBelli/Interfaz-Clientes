@@ -1,0 +1,2 @@
+Mes - Año - IVA Compras - IVA Ventas
+abril - 2023 - 2100.00 - 1050.00
